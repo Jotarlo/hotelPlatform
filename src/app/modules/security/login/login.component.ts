@@ -21,19 +21,20 @@ export class LoginComponent implements OnInit {
   fgValidationBuilder() {
     this.fgValidation = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(10), Validators.max(15)]]
+      password: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(15)]]
     });
+  }
+
+  loginEvent(){
+    if(this.fgValidation.invalid){
+      alert("Invalid data.");
+    }else{
+      alert("go to login");
+    }
   }
 
   get fg(){
     return this.fgValidation.controls;
-  }
-
-  loginEvent(){
-    console.log("In loging event method");
-    if(this.fgValidation.invalid){
-      alert("Invalid Form");
-    }
   }
 
 }
