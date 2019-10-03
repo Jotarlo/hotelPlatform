@@ -31,8 +31,9 @@ export class NavbarComponent implements OnInit {
   }
 
   updateInfo(){
+    let msg = "In session: ";
     this.userLogged = this.userInfo.isLogged;
-    this.userName = ``
+    this.userName = `${msg} ${this.userInfo.firstName} ${this.userInfo.secondName} ${this.userInfo.firstLastname} ${this.userInfo.secondLastname}`;
   }
 
 }
