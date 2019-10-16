@@ -37,6 +37,10 @@ export class SecurityService {
     return user;
   }
 
+  isActiveSession(){
+    return this.userInfo.getValue().isLogged;
+  }
+
   logoutUser(){
     localStorage.removeItem("activeUser");
     this.userInfo.next(new UserModel());

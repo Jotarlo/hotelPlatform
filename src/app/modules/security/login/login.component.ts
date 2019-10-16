@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SecurityService } from 'src/app/services/security.service';
 import { Router } from '@angular/router';
 
+declare var openPlatformModalMessage: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   fgValidation: FormGroup;
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: FormBuilder,
     private secService: SecurityService,
     private router: Router) {
 
@@ -29,21 +31,23 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  loginEvent(){
-    if(this.fgValidation.invalid){
-      alert("Invalid data.");
-    }else{
+  loginEvent() {
+    if (this.fgValidation.invalid) {
+      alert("error data.");
+    } else {
       let u = this.fg.username.value;
       let p = this.fg.password.value;
       let user = this.secService.loginUser(u, p);
-      if(user != null){
+      if (user != null) {
         console.log(user);
         this.router.navigate(['/home']);
+      } else {
+        openPlatformModalMessage("The data is not valid!");
       }
     }
   }
 
-  get fg(){
+  get fg() {
     return this.fgValidation.controls;
   }
 

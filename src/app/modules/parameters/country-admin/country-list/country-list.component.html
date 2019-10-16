@@ -1,0 +1,44 @@
+<br />
+<a routerLink="/country/creator" class="waves-effect waves-light btn">New Register</a>
+<br />
+<br />
+
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Country Name
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of countryList | paginate: { itemsPerPage: 3, currentPage: p }">
+            <td>
+                {{c.code}}
+            </td>
+            <td>
+                {{c.name}}
+            </td>
+            <td>
+                <a routerLink="/country/editor/{{c.code}}" class="waves-effect waves-light btn orange">Edit
+                    <i class="material-icons right">edit</i>
+                </a>
+            </td>
+            <td>
+                <button class="btn waves-effect waves-light red" type="button" name="action">Delete
+                    <i class="material-icons right">delete</i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
