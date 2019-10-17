@@ -1,6 +1,6 @@
 function openPlatformModalMessage(message) {
     document.querySelector("#pMessage").innerHTML = message;
-    openModal('#modalMessage');
+    openModal('modalMessage');
 }
 
 function openConfirmationModal() {

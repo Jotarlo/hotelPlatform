@@ -41,6 +41,7 @@ export class CountryCreatorComponent implements OnInit {
         name: this.fv.name.value
       }
       let saved = this.countryService.saveNewCountry(c);
+      console.log(saved);
       if (saved == 1) {
         openPlatformModalMessage("Data stored successfully.");
         this.router.navigate(['/country/list']);
