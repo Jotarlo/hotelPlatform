@@ -34,7 +34,7 @@
                 </a>
             </td>
             <td>
-                <button class="btn waves-effect waves-light red" type="button" name="action">Delete
+                <button class="btn waves-effect waves-light red" type="button" name="action" (click)="openConfirmation(c.code)">Delete
                     <i class="material-icons right">delete</i>
                 </button>
             </td>
@@ -42,3 +42,15 @@
     </tbody>
 </table>
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+<div id="modalConfirmation" class="modal">
+    <div class="modal-content">
+        <h4>Confirmation Window</h4>
+        <p>Do you confirm remove this element?</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-light btn red">Cancel</a> &nbsp;
+        <a class="modal-close waves-effect waves-light btn green" (click)="removeElement()">Confirm</a>
+    </div>
+</div>

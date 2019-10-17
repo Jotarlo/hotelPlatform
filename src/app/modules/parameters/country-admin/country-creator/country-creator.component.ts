@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CountryService } from 'src/app/services/country.service';
 import { Router } from '@angular/router';
+import { CountryModel } from 'src/app/models/country.model';
 
 declare let openPlatformModalMessage: any;
 
@@ -35,7 +36,11 @@ export class CountryCreatorComponent implements OnInit {
     if (this.frmValidator.invalid) {
       openPlatformModalMessage("the form is invalid!")
     } else {
-      let saved = this.countryService.saveNewCountry(this.fv.code.value, this.fv.name.value);
+      let c: CountryModel = {
+        code: this.fv.code.value,
+        name: this.fv.name.value
+      }
+      let saved = this.countryService.saveNewCountry(c);
       if (saved == 1) {
         openPlatformModalMessage("Data stored successfully.");
         this.router.navigate(['/country/list']);
