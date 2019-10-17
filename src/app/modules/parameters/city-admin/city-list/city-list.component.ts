@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CityModel } from 'src/app/models/city.model';
+import { CityService } from 'src/app/services/city.service';
+
+declare var openConfirmationModal: any;
 
 @Component({
   selector: 'app-city-list',
@@ -6,10 +10,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./city-list.component.css']
 })
 export class CityListComponent implements OnInit {
+  p: number = 1;
+  cityList: CityModel[] = [];
+  codeToRemove: String;
 
-  constructor() { }
+  constructor(private cityService: CityService) { }
 
   ngOnInit() {
+    this.loadCities();
+  }
+
+  loadCities = () => {
+    this.cityList = this.cityService.loadAllCities();
+  }
+
+  openConfirmation(code){
+    this.codeToRemove = code;
+    openConfirmationModal();
+  }
+
+  removeElement(){
+    this.cityService.deleteCity(this.codeToRemove);
+    this.loadCities();
   }
 
 }

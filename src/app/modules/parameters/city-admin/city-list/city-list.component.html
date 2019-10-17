@@ -1,1 +1,63 @@
-<p>city-list works!</p>
+<br />
+<a routerLink="/city/creator" class="waves-effect waves-light btn">New Register</a>
+<br />
+<br />
+
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                City Name
+            </th>
+            <th>
+                Country
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of cityList | paginate: { itemsPerPage: 3, currentPage: p }">
+            <td>
+                {{c.code}}
+            </td>
+            <td>
+                {{c.name}}
+            </td>
+            <td>
+                {{c.countryId}}
+            </td>
+            <td>
+                <a routerLink="/city/editor/{{c.code}}" class="waves-effect waves-light btn orange">Edit
+                    <i class="material-icons right">edit</i>
+                </a>
+            </td>
+            <td>
+                <button class="btn waves-effect waves-light red" type="button" name="action"
+                    (click)="openConfirmation(c.code)">Delete
+                    <i class="material-icons right">delete</i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+<div id="modalConfirmation" class="modal">
+    <div class="modal-content">
+        <h4>Confirmation Window</h4>
+        <p>Do you confirm remove this element?</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-light btn red">Cancel</a> &nbsp;
+        <a class="modal-close waves-effect waves-light btn green" (click)="removeElement()">Confirm</a>
+    </div>
+</div>

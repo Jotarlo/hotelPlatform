@@ -10,7 +10,11 @@ export class CountryService {
 
   loadAllCountries() {
     let tb_country = JSON.parse(localStorage.getItem("tb_country"));
-    return tb_country;
+    if (tb_country != undefined && tb_country != null) {
+      return tb_country;
+    } else {
+      return []
+    }
   }
 
   saveNewCountry(country: CountryModel) {
@@ -59,11 +63,11 @@ export class CountryService {
     localStorage.setItem("tb_country", JSON.stringify(list));
   }
 
-  deleteCountry(code: String){
+  deleteCountry(code: String) {
     let countries = this.loadAllCountries();
     let index = -1;
     countries.forEach((c, i) => {
-      if(c.code == code){
+      if (c.code == code) {
         index = i;
       }
     });
