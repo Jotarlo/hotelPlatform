@@ -12,7 +12,5 @@ document.addEventListener('DOMContentLoaded', function () {
     // select
     /*var elems = document.querySelectorAll('select');
     
-    var instances = M.FormSelect.init(elems, {
-
-    });*/
+    var instances = M.FormSelect.init(elems, {});*/
 });
