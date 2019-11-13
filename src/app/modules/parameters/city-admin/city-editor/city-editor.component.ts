@@ -7,7 +7,7 @@ import { CityModel } from 'src/app/models/city.model';
 import { CountryModel } from 'src/app/models/country.model';
 
 declare var openPlatformModalMessage: any;
-
+declare var initMaterializeSelect:any;
 @Component({
   selector: 'app-city-editor',
   templateUrl: './city-editor.component.html',
@@ -30,6 +30,10 @@ export class CityEditorComponent implements OnInit {
     this.countryList = this.countryService.loadAllCountries();
     this.formGenerator();
     this.getCityInfo();
+  }
+
+  ngAfterViewInit(){
+    initMaterializeSelect()
   }
 
   getCityInfo() {
@@ -63,6 +67,7 @@ export class CityEditorComponent implements OnInit {
       countryId: ['', Validators.required]
     });
   }
+
 
   saveCity() {
     if (this.frmValidator.invalid) {

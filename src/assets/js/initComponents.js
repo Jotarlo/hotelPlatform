@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // modals
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, {});
-
-    // select
-    /*var elems = document.querySelectorAll('select');
-    
-    var instances = M.FormSelect.init(elems, {});*/
 });
+
+function initMaterializeSelect(){
+    // select
+    var elems = document.querySelectorAll('select');
+    
+    var instances = M.FormSelect.init(elems, {});
+}

@@ -17,6 +17,15 @@ export class CityService {
     }
   }
 
+  loadAllCitiesByCountry(country) {
+    let tb_city = JSON.parse(localStorage.getItem("tb_city"));
+    if (tb_city != undefined && tb_city != null) {
+      return tb_city.filter(c => c.countryId == country);
+    } else {
+      return []
+    }
+  }
+
   saveNewCity(city: CityModel) {
     try {
       let currentRecords = this.loadAllCities();
@@ -66,15 +75,15 @@ export class CityService {
   }
 
   deleteCity(code: String) {
-    let countries = this.loadAllCities();
+    let cities = this.loadAllCities();
     let index = -1;
-    countries.forEach((c, i) => {
+    cities.forEach((c, i) => {
       if (c.code == code) {
         index = i;
       }
     });
     //console.log(index);
-    countries.splice(index, 1);
-    this.saveListInLocalStorage(countries);
+    cities.splice(index, 1);
+    this.saveListInLocalStorage(cities);
   }
 }

@@ -7,6 +7,7 @@ import { CountryModel } from 'src/app/models/country.model';
 import { CountryService } from 'src/app/services/country.service';
 
 declare var openPlatformModalMessage: any;
+declare var initMaterializeSelect: any;
 
 @Component({
   selector: 'app-city-creator',
@@ -17,14 +18,18 @@ export class CityCreatorComponent implements OnInit {
   countryList: CountryModel[] = [];
   frmValidator: FormGroup;
 
-  constructor(private fb: FormBuilder, 
-    private cityService: CityService, 
+  constructor(private fb: FormBuilder,
+    private cityService: CityService,
     private router: Router,
     private countryService: CountryService) { }
 
   ngOnInit() {
     this.formGenerator();
     this.countryList = this.countryService.loadAllCountries();
+  }
+
+  ngAfterViewInit(){
+    initMaterializeSelect()
   }
 
   get fv() {
@@ -35,7 +40,7 @@ export class CityCreatorComponent implements OnInit {
     this.frmValidator = this.fb.group({
       code: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.minLength(4)]],
-      countryId:['', Validators.required]
+      countryId: ['', Validators.required]
     });
   }
 

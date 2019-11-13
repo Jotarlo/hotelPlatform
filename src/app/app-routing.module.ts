@@ -30,6 +30,11 @@ const routes: Routes = [
     canActivate: [AuthenticationRequiredGuard]
   },
   {
+    path: 'hotel',
+    loadChildren: './modules/administrator/hotel/hotel.module#HotelModule',
+    canActivate: [AuthenticationRequiredGuard]
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }
