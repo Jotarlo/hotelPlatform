@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
   fgValidation: FormGroup;
 
   constructor(private fb: FormBuilder,
-    private secService: SecurityService,
-    private router: Router) {
+              private secService: SecurityService,
+              private router: Router) {
 
   }
 
@@ -33,16 +33,16 @@ export class LoginComponent implements OnInit {
 
   loginEvent() {
     if (this.fgValidation.invalid) {
-      alert("error data.");
+      alert('error data.');
     } else {
-      let u = this.fg.username.value;
-      let p = this.fg.password.value;
-      let user = this.secService.loginUser(u, p);
+      const u = this.fg.username.value;
+      const p = this.fg.password.value;
+      const user = this.secService.loginUser(u, p);
       if (user != null) {
         console.log(user);
         this.router.navigate(['/home']);
       } else {
-        openPlatformModalMessage("The data is not valid!");
+        openPlatformModalMessage('The data is not valid!');
       }
     }
   }
